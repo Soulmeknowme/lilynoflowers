@@ -27,6 +27,6 @@ lib/                   prompts, crisis, memory, llm, session, db
 
 ## Trước khi ra mắt
 - Kiểm tra lại các số đường dây nóng trong `lib/crisis.ts`.
-- Chuyển SQLite sang Postgres (đổi `provider` trong `prisma/schema.prisma`) khi deploy.
+- Deploy Vercel: thêm Prisma Postgres, điền `DEEPSEEK_API_KEY`, `DEEPSEEK_MODEL`, `AUTH_SECRET`; bảng được tạo tự động lúc build (`vercel-build`).
 - Thêm giới hạn tần suất (rate limit) cho `/api/chat` và đăng nhập.
 - Cân nhắc mã hóa nội dung tin nhắn, có chính sách quyền riêng tư và điều khoản sử dụng rõ ràng.
