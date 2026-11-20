@@ -1,7 +1,7 @@
 import { after } from "next/server";
 import { z } from "zod";
 import { db } from "@/lib/db";
-import { llm, MODEL } from "@/lib/llm";
+import { getLLM, MODEL } from "@/lib/llm";
 import { currentUserId, unauthorized } from "@/lib/auth";
 import { detectCrisis } from "@/lib/crisis";
 import { systemPrompt } from "@/lib/prompts";
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
 
   let completion;
   try {
-    completion = await llm.chat.completions.create({
+    completion = await getLLM().chat.completions.create({
       model: MODEL,
       stream: true,
       temperature: 0.7,

@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { llm, MODEL } from "./llm";
+import { getLLM, MODEL } from "./llm";
 import { MEMORY_PROMPT } from "./prompts";
 
 /** Cập nhật sổ ghi nhớ dài hạn của người dùng từ các tin nhắn gần nhất. */
@@ -19,7 +19,7 @@ export async function updateMemory(userId: string, conversationId: string) {
     .map((m) => `${m.role === "user" ? "Người dùng" : "Trợ lý"}: ${m.content}`)
     .join("\n");
 
-  const res = await llm.chat.completions.create({
+  const res = await getLLM().chat.completions.create({
     model: MODEL,
     temperature: 0.2,
     messages: [
